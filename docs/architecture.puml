@@ -1,0 +1,33 @@
+@startuml
+  cloud "UserDocs"
+
+  package "Your Computer" {
+    ["UserDocs\nDesktop"]
+    [UserDocs] <-down-> ["UserDocs\nDesktop"]
+
+    package "Browser" {
+      [Your App]
+      ["UserDocs\nExtension"]
+      ["UserDocs\nDesktop"] <-> [Your App]
+      ["UserDocs\nDesktop"] <-down-> ["UserDocs\nExtension"]
+    }
+  }
+
+  package "Container" {
+    ["UserDocs\nCI/CD"]
+    [UserDocs] <-down-> ["UserDocs\nCI/CD"]
+
+    package "Headless Browser" {
+      ["Your App "]
+      ["UserDocs\nCI/CD"] <-down-> ["Your App "]
+    }
+  }
+
+  [Local Host]
+  [Remote Host]
+  ["Your App "] <-down-> [Local Host]
+  ["Your App "] <-down-> [Remote Host]
+  [Your App] <-down-> [Local Host]
+  [Your App] <-down-> [Remote Host]
+
+@enduml
